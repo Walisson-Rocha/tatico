@@ -1,26 +1,24 @@
+// src/utils/ProductsContext2.js
 import React, { createContext, useState } from 'react';
 
-export const ProductsContext = createContext();
+export const ProductsContext2 = createContext();
 
-export function ProductsProvider({ children }) {
+export function ProductsProvider2({ children }) {
   const [products, setProducts] = useState([]);
 
-  // Função para adicionar produto
   const addProduct = (product) => {
     setProducts(prevProducts => [...prevProducts, {
       ...product,
-      id: Date.now().toString() // Garante ID único
+      id: Date.now().toString()
     }]);
   };
 
-  // Função para remover produto
   const removeProduct = (productId) => {
     setProducts(prevProducts => 
       prevProducts.filter(product => product.id !== productId)
     );
   };
 
-  // Função para atualizar produto
   const updateProduct = (productId, updatedData) => {
     setProducts(prevProducts =>
       prevProducts.map(product =>
@@ -29,13 +27,12 @@ export function ProductsProvider({ children }) {
     );
   };
 
-  // Cálculo do total
   const total = products.reduce((sum, product) => 
     sum + (product.price * (product.quantity || 1)), 0
   );
 
   return (
-    <ProductsContext.Provider 
+    <ProductsContext2.Provider 
       value={{ 
         products, 
         addProduct, 
@@ -45,6 +42,6 @@ export function ProductsProvider({ children }) {
       }}
     >
       {children}
-    </ProductsContext.Provider>
+    </ProductsContext2.Provider>
   );
 }
