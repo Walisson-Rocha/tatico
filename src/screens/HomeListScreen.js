@@ -1,54 +1,43 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TextInput, Button, FlatList, StyleSheet, Alert, TouchableOpacity } from "react-native";
-import { ProductsContext } from "../utils/ProductsContext"; // Importando o contexto
+import {View,Text,TextInput,FlatList,StyleSheet,Alert,TouchableOpacity,} from "react-native";
+import { ProductsContext } from "../utils/ProductsContext";
 
 export default function HomeListScreen() {
-  // Pegando os produtos e a função de adicionar do contexto
   const { products, addProduct, removeProduct } = useContext(ProductsContext);
 
-  // Estado local para armazenar os dados do novo produto
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
   const [quantity, setQuantity] = useState("");
 
-  // Função para adicionar o produto
   const handleAddProduct = () => {
-    if (name && price && quantity) {
-      // Verificando se os valores de preço e quantidade são válidos
-      const priceNum = parseFloat(price);
+    if (name && quantity) {
       const quantityNum = parseInt(quantity);
-
-      if (isNaN(priceNum) || isNaN(quantityNum)) {
-        Alert.alert("Erro", "Preço ou quantidade inválidos!");
+      if (isNaN(quantityNum)) {
+        Alert.alert("Erro", "Quantidade inválida!");
         return;
       }
 
       const newProduct = {
-        id: String(products.length + 1), // Gerando um id simples baseado no comprimento da lista
+        id: String(Date.now()), // Garante IDs únicos
         name,
-        price: priceNum,
         quantity: quantityNum,
       };
-      addProduct(newProduct); // Adiciona o produto ao contexto
-      setName(""); // Limpa os campos após adicionar
-      setPrice("");
+
+      addProduct(newProduct);
+      setName("");
       setQuantity("");
     } else {
       Alert.alert("Erro", "Por favor, preencha todos os campos!");
     }
   };
 
-  // Função para remover um produto
   const handleRemoveProduct = (id) => {
-    removeProduct(id); // Remove o produto com o id fornecido
+    removeProduct(id);
   };
 
-  // Função para renderizar cada item da lista
   const renderItem = ({ item }) => (
     <TouchableOpacity onPress={() => handleRemoveProduct(item.id)}>
       <View style={styles.productItem}>
         <Text style={styles.productText}>Nome: {item.name}</Text>
-        <Text style={styles.productText}>Preço: R$ {item.price.toFixed(2)}</Text>
         <Text style={styles.productText}>Quantidade: {item.quantity}</Text>
       </View>
     </TouchableOpacity>
@@ -56,9 +45,9 @@ export default function HomeListScreen() {
 
   return (
     <View style={{ flex: 1, padding: 16 }}>
-      <Text style={styles.heading}>📝 Lista de Compras em Casa</Text>
+      <Text style={styles.heading}>📝 Lista de Compras</Text>
 
-      {/* Formulário para adicionar um produto */}
+      {/* Formulário */}
       <View style={styles.form}>
         <TextInput
           style={styles.input}
@@ -68,24 +57,19 @@ export default function HomeListScreen() {
         />
         <TextInput
           style={styles.input}
-          placeholder="Preço"
-          value={price}
-          keyboardType="numeric"
-          onChangeText={setPrice}
-        />
-        <TextInput
-          style={styles.input}
           placeholder="Quantidade"
           value={quantity}
           keyboardType="numeric"
           onChangeText={setQuantity}
         />
-        <Button title="Adicionar Produto" onPress={handleAddProduct} />
+        <TouchableOpacity style={styles.addButton} >
+          <Text style={styles.addButtonText}>Adicionar Produto</Text>
+        </TouchableOpacity>
       </View>
 
-      {/* Lista de produtos */}
+      {/* Lista de Produtos */}
       <FlatList
-        data={products} // Exibindo os produtos do contexto
+        data={products}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         style={{ marginTop: 20 }}
@@ -112,10 +96,22 @@ const styles = StyleSheet.create({
     paddingLeft: 8,
     borderRadius: 4,
   },
+  addButton: {
+    backgroundColor: "#4CAF50",
+    padding: 12,
+    borderRadius: 6,
+    alignItems: "center",
+    marginTop: 10,
+  },
+  addButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
   productItem: {
     marginBottom: 12,
     padding: 10,
-    backgroundColor: "lightgreen", // Fundo verde para os produtos
+    backgroundColor: "lightgreen",
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#ccc",
