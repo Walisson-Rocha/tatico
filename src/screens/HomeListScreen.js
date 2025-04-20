@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TextInput, Button, FlatList, StyleSheet } from "react-native";
-
+import { View, Text, TextInput, Button, FlatList, StyleSheet, Alert, TouchableOpacity } from "react-native";
+import { ProductsContext } from "../utils/ProductsContext"; // Importando o contexto
 
 export default function HomeListScreen() {
-  const { products, addProduct } = useContext(ProductsContext); // Pegando os produtos e a função de adicionar do contexto
+  // Pegando os produtos e a função de adicionar do contexto
+  const { products, addProduct, removeProduct } = useContext(ProductsContext);
 
   // Estado local para armazenar os dados do novo produto
   const [name, setName] = useState("");
@@ -13,28 +14,44 @@ export default function HomeListScreen() {
   // Função para adicionar o produto
   const handleAddProduct = () => {
     if (name && price && quantity) {
+      // Verificando se os valores de preço e quantidade são válidos
+      const priceNum = parseFloat(price);
+      const quantityNum = parseInt(quantity);
+
+      if (isNaN(priceNum) || isNaN(quantityNum)) {
+        Alert.alert("Erro", "Preço ou quantidade inválidos!");
+        return;
+      }
+
       const newProduct = {
         id: String(products.length + 1), // Gerando um id simples baseado no comprimento da lista
         name,
-        price: parseFloat(price),
-        quantity: parseInt(quantity),
+        price: priceNum,
+        quantity: quantityNum,
       };
       addProduct(newProduct); // Adiciona o produto ao contexto
       setName(""); // Limpa os campos após adicionar
       setPrice("");
       setQuantity("");
     } else {
-      alert("Por favor, preencha todos os campos!");
+      Alert.alert("Erro", "Por favor, preencha todos os campos!");
     }
+  };
+
+  // Função para remover um produto
+  const handleRemoveProduct = (id) => {
+    removeProduct(id); // Remove o produto com o id fornecido
   };
 
   // Função para renderizar cada item da lista
   const renderItem = ({ item }) => (
-    <View style={styles.productItem}>
-      <Text style={styles.productText}>Nome: {item.name}</Text>
-      <Text style={styles.productText}>Preço: R$ {item.price.toFixed(2)}</Text>
-      <Text style={styles.productText}>Quantidade: {item.quantity}</Text>
-    </View>
+    <TouchableOpacity onPress={() => handleRemoveProduct(item.id)}>
+      <View style={styles.productItem}>
+        <Text style={styles.productText}>Nome: {item.name}</Text>
+        <Text style={styles.productText}>Preço: R$ {item.price.toFixed(2)}</Text>
+        <Text style={styles.productText}>Quantidade: {item.quantity}</Text>
+      </View>
+    </TouchableOpacity>
   );
 
   return (
@@ -98,7 +115,7 @@ const styles = StyleSheet.create({
   productItem: {
     marginBottom: 12,
     padding: 10,
-    backgroundColor: "#f4f4f4",
+    backgroundColor: "lightgreen", // Fundo verde para os produtos
     borderRadius: 4,
     borderWidth: 1,
     borderColor: "#ccc",
