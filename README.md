@@ -1,4 +1,4 @@
-# 🛒 Lista de Compras - Supermercado
+# 🛒 Lista Magica - Supermercado
 
 Aplicativo mobile desenvolvido com **React Native** que auxilia donas de casa no planejamento e controle das compras no supermercado.
 
@@ -60,3 +60,16 @@ Login → Register → MainApp (com tabs):
 Contribuições são bem-vindas! Sinta-se livre para abrir issues e enviar pull requests.
 
 
+📦 Bibliotecas principais
+
+npm install react-native-paper
+npm install @react-navigation/native
+npm install @react-navigation/bottom-tabs
+npm install @react-navigation/stack
+npm install react-native-vector-icons
+
+🚀 Dependências adicionais para navegação
+
+npm install react-native-screens react-native-safe-area-context
+npm install react-native-gesture-handler react-native-reanimated
+npm install react-native-fast-refresh
