@@ -35,7 +35,7 @@ Criado por **Walisson Rocha Paixão**.
 1. Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/Walisson-Rocha/tatico.git
 cd seu-repositorio
 
 🎨 Navegação
@@ -58,3 +58,5 @@ Login → Register → MainApp (com tabs):
 
 🤝 Contribuição
 Contribuições são bem-vindas! Sinta-se livre para abrir issues e enviar pull requests.
+
+
