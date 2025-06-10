@@ -8,13 +8,13 @@ export default function RegisterScreen({ navigation }) {
   const [password, setPassword] = useState("");
 
   const handleRegister = () => {
-    // Validação básica
+    
     if (!name || !email || !phone || !password) {
       alert("Por favor, preencha todos os campos");
       return;
     }
     
-    // Simulação de cadastro bem-sucedido
+   
     navigation.replace("MainApp");
   };
 

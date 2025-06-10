@@ -1,15 +1,5 @@
 import React, { useContext, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  FlatList,
-  StyleSheet,
-  Alert,
-  TouchableOpacity,
-  Image,
-  ScrollView
-} from "react-native";
+import { View,Text, TextInput, FlatList, StyleSheet, Alert, TouchableOpacity, Image, ScrollView} from "react-native";
 import { Card } from "react-native-paper";
 import { ProductsContext2 } from "../utils/ProductsContext2";
 

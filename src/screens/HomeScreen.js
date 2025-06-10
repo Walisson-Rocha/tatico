@@ -1,15 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { 
-  View, 
-  ScrollView, 
-  Text, 
-  StyleSheet, 
-  TextInput, 
-  Image, 
-  Animated, 
-  StatusBar,
-  Platform
-} from 'react-native';
+import { View, ScrollView, Text, StyleSheet, TextInput, Image, Animated, StatusBar, Platform} from 'react-native';
 import { Card } from 'react-native-paper';
 import { ProductsContext } from '../utils/ProductsContext';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -53,7 +43,7 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      {/* Header with Logo and App Name - No white background */}
+    
       <View style={styles.headerContainer}>
         <Image 
           source={require('../image/logo.png')}
@@ -63,7 +53,7 @@ export default function HomeScreen({ navigation }) {
         <Text style={styles.appName}>Lista Mágica</Text>
       </View>
 
-      {/* Search Bar */}
+    
       <View style={styles.searchContainer}>
         <Icon name="search" size={20} color="#666" style={styles.searchIcon} />
         <TextInput
@@ -74,12 +64,12 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-      {/* Special Offer */}
+     
       <View style={styles.offerContainer}>
         <Text style={styles.offerTitle}>OFERTA ESPECIAL</Text>
       </View>
 
-      {/* Image Carousel */}
+      
       <View style={styles.carouselContainer}>
         <Animated.Image 
           source={{ uri: bannerImages[currentImageIndex] }} 
@@ -88,7 +78,7 @@ export default function HomeScreen({ navigation }) {
         />
       </View>
 
-      {/* Products Section */}
+      
       <ScrollView style={styles.scrollContainer}>
         <Text style={styles.sectionTitle}>Compra</Text>
 
@@ -103,7 +93,7 @@ export default function HomeScreen({ navigation }) {
         ))}
       </ScrollView>
 
-      {/* Fixed Total */}
+      
       <View style={styles.fixedTotalContainer}>
         <Card style={styles.totalCard}>
           <Card.Content>

@@ -3,11 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-// Telas de Autenticação
+// Autenticação
 import LoginScreen from "../screens/LoginScreen";
 import RegisterScreen from "../screens/RegisterScreen";
 
-// Telas Principais
+// Principais
 import HomeScreen from "../screens/HomeScreen";
 import AddProductScreen from "../screens/AddProductScreen";
 import HomeListScreen from "../screens/HomeListScreen";
@@ -70,14 +70,14 @@ function MainTabs() {
   );
 }
 
-// Navegação principal (Stack)
+
 export default function AppNavigator() {
   return (
     <Stack.Navigator 
       initialRouteName="Login" 
       screenOptions={{ 
         headerShown: false,
-        gestureEnabled: false, // Desativa gesto de voltar na tela inicial
+        gestureEnabled: false,
       }}
     >
       <Stack.Screen 
@@ -91,7 +91,7 @@ export default function AppNavigator() {
       <Stack.Screen 
         name="MainApp" 
         component={MainTabs} 
-        options={{ gestureEnabled: false }} // Desativa gesto de voltar nas tabs
+        options={{ gestureEnabled: false }}
       />
     </Stack.Navigator>
   );

@@ -1,4 +1,3 @@
-// src/components/ImageCarousel.js
 import React, { useRef, useEffect, useState } from "react";
 import { FlatList, Image, View, Dimensions, Text } from "react-native";
 

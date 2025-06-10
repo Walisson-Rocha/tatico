@@ -1,14 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
-import { 
-  View, 
-  TextInput, 
-  Button, 
-  Alert, 
-  Image, 
-  StyleSheet,
-  Text,
-  Animated
-} from 'react-native';
+import { View, TextInput, Button, Alert, Image, StyleSheet, Text, Animated} from 'react-native';
 import { Card } from 'react-native-paper';
 import { ProductsContext } from '../utils/ProductsContext';
 
@@ -21,14 +12,14 @@ export default function AddProductScreen({ navigation }) {
 
   const { addProduct } = useContext(ProductsContext);
 
-  // Imagens para o carrossel
+
   const bannerImages = [
     'https://www.pratofino.com.br/wp-content/uploads/2022/09/banner-premios.png',
     'https://img.cdndsgni.com/preview/10769184.jpg',
     'https://taticobaratotododia.com.br/bsb/wp-content/uploads/2024/10/BANNER-TATICO.jpg.webp'
   ];
 
-  // Efeito para trocar as imagens automaticamente
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       Animated.timing(fadeAnim, {
