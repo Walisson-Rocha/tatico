@@ -13,7 +13,7 @@ const ImageCarousel = ({ images, height = 200 }) => {
       const nextIndex = (currentIndex + 1) % images.length;
       flatListRef.current?.scrollToIndex({ index: nextIndex, animated: true });
       setCurrentIndex(nextIndex);
-    }, 4000); // Altere o tempo para o intervalo entre as trocas de imagem
+    }, 4000); 
 
     return () => clearInterval(interval);
   }, [currentIndex]);

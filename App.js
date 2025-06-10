@@ -5,11 +5,11 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-// Importe os Providers
+
 import { ProductsProvider } from "./src/utils/ProductsContext";
 import { ProductsProvider2 } from "./src/utils/ProductsContext2";
 
-// Importe todas as telas
+
 import LoginScreen from "./src/screens/LoginScreen";
 import RegisterScreen from "./src/screens/RegisterScreen";
 import HomeScreen from "./src/screens/HomeScreen";
@@ -19,7 +19,7 @@ import HomeListScreen from "./src/screens/HomeListScreen";
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Componente das abas principais (após login)
+// login
 function MainTabs() {
   return (
     <Tab.Navigator
@@ -49,7 +49,7 @@ function MainTabs() {
   );
 }
 
-// Componente principal de navegação
+// navegação
 function AppNavigator() {
   return (
     <Stack.Navigator 
@@ -63,7 +63,7 @@ function AppNavigator() {
   );
 }
 
-// Componente App principal
+// App principal
 export default function App() {
   return (
     <ProductsProvider>
